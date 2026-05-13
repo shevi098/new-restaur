@@ -76,7 +76,11 @@ app.get('/cart', check2, (req, res) => {
     res.sendFile(__dirname + "/cart.html")
 })
 
-app.get(['/', '/signup'], check, (req, res) => {
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/index.html")
+})
+
+app.get('/signup', check, (req, res) => {
     res.sendFile(__dirname + "/signup.html")
 })
 
