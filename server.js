@@ -12,11 +12,9 @@ const client = mongodb.MongoClient;
 let dbinstance;
 
 app.set('view engine', 'ejs');
-
-
-client.connect('mongodb://127.0.0.1:27017')
+client.connect('mongodb+srv://adminshevya:Shevya1362@cluster1.nigtkud.mongodb.net/adminshevya?retryWrites=true&w=majority&appName=Cluster1')
     .then(data => {
-        dbinstance = data.db('Soumyajit');
+        dbinstance = data.db('adminshevya');
         if (dbinstance) {
             console.log("Database Connected");
         }
@@ -25,6 +23,19 @@ client.connect('mongodb://127.0.0.1:27017')
             console.log(err);
         }
     });
+
+
+// client.connect('mongodb://127.0.0.1:27017')
+//     .then(data => {
+//         dbinstance = data.db('Soumyajit');
+//         if (dbinstance) {
+//             console.log("Database Connected");
+//         }
+//         else {
+//             console.log('hello');
+//             console.log(err);
+//         }
+//     });
 // mongodb+srv://soumyajit2004:mongo004@backend.2bwkmvt.mongodb.net/
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true })); // middleware for handling form data
@@ -212,9 +223,14 @@ app.delete('/delete/user/:id', (req, res) => {
 //admin end
 
 
-app.listen(3000, (err) => {
-    if (err)
-        console.log(err);
-    else
-        console.log("SuccessFully Connected to Server");
-}); 
+// app.listen(3000, (err) => {
+//     if (err)
+//         console.log(err);
+//     else
+//         console.log("SuccessFully Connected to Server");
+// }); 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
